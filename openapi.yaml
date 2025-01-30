@@ -1,0 +1,48 @@
+swagger: "2.0"
+info:
+  title: "Draco API"
+  description: "API Gateway"
+  version: "1.0.0"
+host: "api.dracoframework.com"
+schemes:
+  - https
+paths:
+  /check-agent/{agentName}:
+    get:
+      summary: "Check if an agent exists"
+      operationId: "checkAgent"
+      parameters:
+        - name: "agentName"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        "200":
+          description: "Success"
+        "403":
+          description: "Forbidden"
+      x-google-backend:
+        address: "https://api.dracoframework.com"
+
+  /store-agent:
+    post:
+      summary: "Store agent details"
+      operationId: "storeAgent"
+      parameters:
+        - name: "body"
+          in: "body"
+          required: true
+          schema:
+            type: "object"
+            properties:
+              agentName:
+                type: "string"
+              agentDetails:
+                type: "object"
+      responses:
+        "200":
+          description: "Success"
+        "403":
+          description: "Forbidden"
+      x-google-backend:
+        address: "https://api.dracoframework.com"
